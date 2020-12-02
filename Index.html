@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>bin2dec</title>
+    <link rel="stylesheet" href="Style.css" />
+  </head>
+  <body>
+    <div id="Conteiner">
+      <div id="Conversor">
+        <div id="BinaryField">
+          <label id="Title">Decimal for Binary</label>
+          <input type="text" id="BinaryInput" maxlength="8" />
+          <button
+            type="button"
+            id="ConvertButton"
+            onclick="conversor()"
+            name="DecimalForBinary"
+          >
+            Convert
+          </button>
+        </div>
+
+        <div id="ResultField">
+          <label>Result</label>
+          <input type="text" disabled="disabled" id="ResultOutput" />
+
+          <div id="tradeButtonConteiner">
+            <input
+              type="button"
+              id="tradeButton"
+              value="Binary for Decimal"
+              onclick="tradeButtonFunction()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="Script.js"></script>
+</html>

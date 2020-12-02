@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>bin2dec</title>
+    <style>
+      * {
+        font-size: 20px;
+        color: white;
+      }
+
+      /*ESTUDAR SOBRE OS PSEUDO-ELEMENTOS*/
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      label {
+        font-weight: bold;
+        font-size: 40px;
+        text-align: center;
+      }
+
+      input {
+        background: black;
+        border: solid 2px white;
+        border-radius: 10px;
+        width: 250px;
+        margin: 20px auto;
+        padding: 5px;
+        text-align: center;
+      }
+
+      body {
+        background: black;
+      }
+
+      button {
+        width: 270px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        height: 40px;
+        border-radius: 10px;
+        background: black;
+        border: solid 2px white;
+      }
+
+      /*ESTUDAR SOBRE O ALIGN-ITEMS E A MEDIDA VH*/
+      #Conteiner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+      }
+
+      #Conversor {
+        width: 600px;
+        height: 600px;
+        border: #fff solid 2px;
+        border-radius: 20px;
+      }
+
+      #BinaryField {
+        border: #fff solid 2px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 50px 50px;
+        padding: 20px;
+      }
+
+      #ResultField {
+        border: #fff solid 2px;
+        border-radius: 20px;
+        margin: 40px 50px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      #tradeButtonConteiner {
+        display: flex;
+      }
+
+      #TradeButton {
+        width: 270px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="Conteiner">
+      <div id="Conversor">
+        <div id="BinaryField">
+          <label id="Title">Decimal for Binary</label>
+          <input type="text" id="BinaryInput" maxlength="8" />
+          <button
+            type="button"
+            id="ConvertButton"
+            onclick="conversor()"
+            name="DecimalForBinary"
+          >
+            Convert
+          </button>
+        </div>
+
+        <div id="ResultField">
+          <label>Result</label>
+          <input type="text" disabled="disabled" id="ResultOutput" />
+
+          <div id="tradeButtonConteiner">
+            <input
+              type="button"
+              id="tradeButton"
+              value="Binary for Decimal"
+              onclick="tradeButtonFunction()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let tradeButton = document.getElementById("tradeButton");
+    let operationType = document.getElementById("Title");
+    let convertButton = document.getElementById("ConvertButton");
+    let inputNum = document.getElementById("BinaryInput");
+    let result = document.getElementById("ResultOutput");
+
+    let tradeButtonFunction = () => {
+      if (tradeButton.value === "Binary for Decimal") {
+        tradeButton.value = "Decimal for Binary";
+        operationType.innerHTML = "Binary for Decimal";
+        convertButton.name = "BinaryForDecimal";
+        result.value = "";
+        inputNum.value = "";
+      } else {
+        tradeButton.value = "Binary for Decimal";
+        operationType.innerHTML = "Decimal for Binary";
+        convertButton.name = "DecimalForBinary";
+        result.value = "";
+        inputNum.value = "";
+      }
+    };
+
+    let convertDec2Bin = () => {
+      let decNum = 0;
+      decNum = inputNum.value;
+      var resultBin = [];
+
+      while (decNum >= 2) {
+        resultBin.push(decNum % 2);
+        decNum = Math.floor(decNum / 2);
+      }
+
+      resultBin.push(decNum);
+      resultBin.reverse();
+      result.value = resultBin.join("");
+    };
+
+    let convertBin2Dec = () => {
+    //pra esse exemplo vamos considerar o valor 1010(10 em Binario)
+    //esses dois comandos servem pra pegar
+    //o numero que você digitar,
+    //por padrão ele é 0 até que você digite algo
+      let binNum = 0;
+      binNum = inputNum.value;
+
+      //aqui eu espalhei o numero que você digitou(1010)
+      //cada um deles foram espalhados dentro de um dos indices do vetor
+      //que começa com o valor 0, ou seja cada um agora é um valor individual
+      let binNumArray = Array(...binNum);
+
+      //aqui eu criei outro vetor pra posteriormente armazenar individualmente cada mumero
+      //que sairam como resultado após usarmos aquela expressão
+      let binResult = [];
+
+      //esse comando aqui reverte a ordem do numero binário de 1010 para 0101
+      const reversedBinNumArray = Array(...binNumArray.reverse());
+
+      //isso aqui é uma função, que basicamente pra cada elemento(valor)
+      //dentro do nosso vetor binNumArray ele executa uma ação
+      //no caso a ação é: 1-pegue um numero dentro do vetor
+      //2- multiplique ele pelo numero 2 elevado ao SEU PROPRIO INDICE
+      //3- armazeno o resultado em um novo vetor
+      //4-vai ter um monte de zeros irrelevantes nesse resultado
+      //então some todos os valores dentro desse vetor e exiba pro usuário
+      reversedBinNumArray.forEach((digit, index) => {
+        binResult.unshift(digit * (2 ** index));
+
+        binResult.reduce((a, b) => {
+          return (result.value = a + b);
+        });
+      });
+    };
+
+    let conversor = () => {
+      if (convertButton.name == "DecimalForBinary") {
+        convertDec2Bin();
+      } else {
+        convertBin2Dec();
+      }
+    };
+  </script>
+</html>

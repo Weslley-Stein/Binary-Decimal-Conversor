@@ -1,0 +1,84 @@
+* {
+  font-size: 20px;
+  color: white;
+}
+
+/*ESTUDAR SOBRE OS PSEUDO-ELEMENTOS*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+label {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
+
+input {
+  background: black;
+  border: solid 2px white;
+  border-radius: 10px;
+  width: 250px;
+  margin: 20px auto;
+  padding: 5px;
+  text-align: center;
+}
+
+body {
+  background: black;
+}
+
+button {
+  width: 270px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  height: 40px;
+  border-radius: 10px;
+  background: black;
+  border: solid 2px white;
+}
+
+/*ESTUDAR SOBRE O ALIGN-ITEMS E A MEDIDA VH*/
+#Conteiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+#Conversor {
+  width: 600px;
+  height: 600px;
+  border: #fff solid 2px;
+  border-radius: 20px;
+}
+
+#BinaryField {
+  border: #fff solid 2px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 50px 50px;
+  padding: 20px;
+}
+
+#ResultField {
+  border: #fff solid 2px;
+  border-radius: 20px;
+  margin: 40px 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#tradeButtonConteiner {
+  display: flex;
+}
+
+#TradeButton {
+  width: 270px;
+}
